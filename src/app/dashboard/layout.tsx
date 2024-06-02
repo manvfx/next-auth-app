@@ -48,7 +48,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
             <header>
                 <button onClick={() => logout()} className="p-2 bg-orange-600 text-white w-fit rounded" type="submit">Logout</button>
                 <br />
-                Hello {userData.user.email} <br />
+                Hello {userData.user.name} | {userData.user.email} <br />
             </header>
             {children}
         </div>
