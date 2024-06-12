@@ -35,7 +35,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import LoadingScreen from '@/components/common/LoadingScreen';
 
 interface UserResponse {
     user: string | null;
@@ -71,7 +70,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
     }, []);
 
     if (!success) {
-        return <LoadingScreen />;
+        return <p>Loading...</p>;
     }
 
     return (
@@ -92,8 +91,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                         <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
                             <Link
                                 href="/dashboard"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${activeMenu === 'Dashboard' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                    }`}
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${
+                                    activeMenu === 'Dashboard' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                }`}
                                 onClick={() => setActiveMenu('Dashboard')}
                             >
                                 <Home className="h-4 w-4" />
@@ -101,8 +101,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                             </Link>
                             <Link
                                 href="#"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${activeMenu === 'Orders' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                    }`}
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${
+                                    activeMenu === 'Orders' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                }`}
                                 onClick={() => setActiveMenu('Orders')}
                             >
                                 <ShoppingCart className="h-4 w-4" />
@@ -113,8 +114,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                             </Link>
                             <Link
                                 href="/products"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${activeMenu === 'Products' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                    }`}
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${
+                                    activeMenu === 'Products' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                }`}
                                 onClick={() => setActiveMenu('Products')}
                             >
                                 <Package className="h-4 w-4" />
@@ -122,8 +124,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                             </Link>
                             <Link
                                 href="#"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${activeMenu === 'Customers' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                    }`}
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${
+                                    activeMenu === 'Customers' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                }`}
                                 onClick={() => setActiveMenu('Customers')}
                             >
                                 <Users className="h-4 w-4" />
@@ -131,8 +134,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                             </Link>
                             <Link
                                 href="#"
-                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${activeMenu === 'Analytics' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                    }`}
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${
+                                    activeMenu === 'Analytics' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                }`}
                                 onClick={() => setActiveMenu('Analytics')}
                             >
                                 <LineChart className="h-4 w-4" />
@@ -182,8 +186,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${activeMenu === 'Dashboard' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                        }`}
+                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${
+                                        activeMenu === 'Dashboard' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                    }`}
                                     onClick={() => setActiveMenu('Dashboard')}
                                 >
                                     <Home className="h-5 w-5" />
@@ -191,8 +196,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${activeMenu === 'Orders' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                        }`}
+                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${
+                                        activeMenu === 'Orders' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                    }`}
                                     onClick={() => setActiveMenu('Orders')}
                                 >
                                     <ShoppingCart className="h-5 w-5" />
@@ -203,8 +209,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${activeMenu === 'Products' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                        }`}
+                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${
+                                        activeMenu === 'Products' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                    }`}
                                     onClick={() => setActiveMenu('Products')}
                                 >
                                     <Package className="h-5 w-5" />
@@ -212,8 +219,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${activeMenu === 'Customers' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                        }`}
+                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${
+                                        activeMenu === 'Customers' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                    }`}
                                     onClick={() => setActiveMenu('Customers')}
                                 >
                                     <Users className="h-5 w-5" />
@@ -221,8 +229,9 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                                 </Link>
                                 <Link
                                     href="#"
-                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${activeMenu === 'Analytics' ? 'bg-muted text-primary' : 'text-muted-foreground'
-                                        }`}
+                                    className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 transition-all ${
+                                        activeMenu === 'Analytics' ? 'bg-muted text-primary' : 'text-muted-foreground'
+                                    }`}
                                     onClick={() => setActiveMenu('Analytics')}
                                 >
                                     <LineChart className="h-5 w-5" />
@@ -278,7 +287,7 @@ function DashboardLayout({ children }: { children: React.ReactNode }) {
                 </header>
                 <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
                     Hello {userData.user.name} | {userData.user.email} <br />
-                    {children}
+                    {children}                    
                 </main>
             </div>
         </div>
