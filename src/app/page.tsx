@@ -1,4 +1,5 @@
 "use client"
+import React from 'react'
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
 import Image from "next/image"
@@ -6,14 +7,23 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
+import { Loader2 } from "lucide-react"
+
+interface ErrorResponse {
+  message: string;
+}
 
 export default function Home() {
   const router = useRouter();
-  const { toast } = useToast()
+  const { toast } = useToast();
+  const [loading, setLoading] = React.useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setLoading(true);
+
     const requestPayload = {
       email: event.currentTarget.email.value,
       password: event.currentTarget.password.value,
@@ -21,15 +31,19 @@ export default function Home() {
 
     try {
       const { data } = await axios.post("/api/auth/login", requestPayload);
-      // alert(JSON.stringify(data));
       router.push('/dashboard')
 
     } catch (error) {
-      const err = error as AxiosError;
+      const err = error as AxiosError<ErrorResponse>;
+      const message = err.response?.data?.message || 'Something went wrong';
       toast({
+        variant: "destructive",
         title: "Invalid credentials",
-        description: err.message,
+        description: message,
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
       })
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -63,8 +77,15 @@ export default function Home() {
                 </div>
                 <Input id="password" name="password" type="password" required />
               </div>
-              <Button type="submit" className="w-full">
-                Login
+              <Button type="submit" className="w-full" disabled={loading}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Loading
+                  </>
+                ) : (
+                  'Login'
+                )}
               </Button>
             </div>
             <div className="mt-4 text-center text-sm">
