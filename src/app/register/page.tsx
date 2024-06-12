@@ -1,6 +1,17 @@
 "use client"
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
+import { Button } from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 export default function Register() {
     const router = useRouter();
@@ -24,41 +35,34 @@ export default function Register() {
     }
 
     return (
-        <div className="max-w-3xl mx-auto py-16">
-            <h1 className="mt-2">User Registration</h1>
-            <form onSubmit={handleSubmit} className="mt-3">
-                <div>
-                    <label htmlFor="fullName" className="mr-1">Full Name</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        required
-                        className="border rounded border-slate-700"
-                    />
-                </div>
-                <div className="mt-2">
-                    <label htmlFor="email" className="mr-1">Email</label>
-                    <input
-                        type="text"
-                        id="email"
-                        name="email"
-                        required
-                        className="border rounded border-slate-700"
-                    />
-                </div>
-                <div className="mt-2">
-                    <label htmlFor="password" className="mr-1">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        required
-                        className="border rounded border-slate-700"
-                    />
-                </div>
-                <button className="p-2 bg-orange-600 text-white w-fit rounded" type="submit">Submit</button>
-            </form>
-        </div>
+        <div className="flex items-center justify-center min-h-screen">
+            <Card className="w-full max-w-sm">
+                <form onSubmit={handleSubmit}>
+                    <CardHeader>
+                        <CardTitle className="text-2xl">Register</CardTitle>
+                        <CardDescription>
+                            Enter your email below to register to your account.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="grid gap-4">
+                        <div className="grid gap-2">
+                            <Label htmlFor="fullName">Full Name</Label>
+                            <Input id="fullName" type="text" placeholder="Full name" required />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="email">Email</Label>
+                            <Input id="email" type="email" placeholder="m@example.com" required />
+                        </div>
+                        <div className="grid gap-2">
+                            <Label htmlFor="password">Password</Label>
+                            <Input id="password" name="password" type="password" required />
+                        </div>
+                    </CardContent>
+                    <CardFooter>
+                        <Button className="w-full" type="submit">Sign up</Button>
+                    </CardFooter>
+                </form>
+            </Card>
+        </div >
     );
 }

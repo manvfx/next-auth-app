@@ -1,9 +1,16 @@
 "use client"
 import axios, { AxiosError } from 'axios'
 import { useRouter } from 'next/navigation'
+import Image from "next/image"
+import Link from "next/link"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { useToast } from "@/components/ui/use-toast"
 
 export default function Home() {
   const router = useRouter();
+  const { toast } = useToast()
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -19,36 +26,65 @@ export default function Home() {
 
     } catch (error) {
       const err = error as AxiosError;
-      alert(err.message)
+      toast({
+        title: "Invalid credentials",
+        description: err.message,
+      })
     }
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-16">
-      <h1 className="mt-2">JWT Cookie based NextJS Authentication</h1>
-      <form onSubmit={handleSubmit} className="mt-3">
-        <div>
-          <label htmlFor="email" className="mr-1">Email</label>
-          <input
-            type="text"
-            id="email"
-            name="email"
-            required
-            className="border rounded border-slate-700"
-          />
+    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
+      <div className="flex items-center justify-center py-12">
+        <div className="mx-auto grid w-[350px] gap-6">
+          <form onSubmit={handleSubmit}>
+            <div className="grid gap-2 text-center">
+              <h1 className="text-3xl font-bold">Login</h1>
+              <p className="text-balance text-muted-foreground">
+                Enter your email below to login to your account
+              </p>
+            </div>
+            <div className="grid gap-4">
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="email">Email</Label>
+                </div>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="your@example.com"
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <div className="flex items-center">
+                  <Label htmlFor="password">Password</Label>
+                </div>
+                <Input id="password" name="password" type="password" required />
+              </div>
+              <Button type="submit" className="w-full">
+                Login
+              </Button>
+            </div>
+            <div className="mt-4 text-center text-sm">
+              Don&apos;t have an account?{" "}
+              <Link href="/register" className="underline">
+                Sign up
+              </Link>
+            </div>
+          </form>
         </div>
-        <div className="mt-2">
-          <label htmlFor="password" className="mr-1">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            required
-            className="border rounded border-slate-700"
-          />
-        </div>
-        <button className="p-2 bg-orange-600 text-white w-fit rounded" type="submit">Submit</button>
-      </form>
+      </div>
+      <div className="hidden bg-muted lg:block">
+        <Image
+          src="https://ui.shadcn.com/placeholder.svg"
+          alt="Image"
+          width="1920"
+          height="1080"
+          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+        />
+      </div>
     </div>
   );
 }
